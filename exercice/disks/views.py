@@ -11,6 +11,9 @@ def tous_albums(request):
     return render(request, 'disks/tousAlbums.html', {'listeAlbums': albums})
 
 
-def details_album(request, id):
+def details_album(request, id, title):
     album = get_object_or_404(Album, id=id)
-    return render(request, 'blog/detailsAlbum.html', {'album': album})
+    return render(request, 'disks/detailsAlbum.html', {'album': album})
+
+def test(request):
+    return render(request, 'disks/test.html')
