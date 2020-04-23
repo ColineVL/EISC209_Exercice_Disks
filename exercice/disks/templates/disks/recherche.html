@@ -3,8 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Recherche</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    Salut
+
+
+<div class="jumbotron text-center">
+    <h1>Résultat de la recherche</h1>
+    <h4>- {{ search }} -</h4>
+</div>
+
+<div class="container">
+    <h3>Albums</h3>
+    <div class="row">
+        <div class="col-sm-6">
+            <h5>Title</h5>
+        </div>
+        <div class="col-sm-6">
+            <h5>Artist</h5>
+        </div>
+    </div>
+    {% for album in albums %}
+        <div class="row">
+            <div class="col-sm-6">
+                <p><a href="{% url "detailsAlbum" album.id album.Title %}">{{ album.Title }}</a></p>
+            </div>
+            <div class="col-sm-6">
+                <p>{{ album.Artist }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="container">
+    <h3>Artists</h3>
+    {% for artist in artists %}
+        <div class="row">
+            <div class="col-sm-6">
+                <p>{{ artist }}</p>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+
+<div class="container">
+    <h3>Tracks</h3>
+    <div class="row">
+        <div class="col-sm-4">
+            <h5>Name</h5>
+        </div>
+        <div class="col-sm-4">
+            <h5>Album</h5>
+        </div>
+        <div class="col-sm-4">
+            <h5>Artist</h5>
+        </div>
+    </div>
+    {% for track in tracks %}
+        <div class="row">
+            <div class="col-sm-4">
+                <p>{{ track.Name }}</p>
+            </div>
+            <div class="col-sm-4">
+                <p>{{ track.Album }}</p>
+            </div>
+            <div class="col-sm-4">
+                <p>{{ track.Album.Artist }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+<footer class="container">
+    <div class="container text-center">
+        <p><a href='{% url "tousAlbums" %}'>Retour à la liste des albums</p>
+
+    </div>
+</footer>
+
 </body>
 </html>

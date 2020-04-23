@@ -1,26 +1,21 @@
 from django.contrib import admin
-from django.contrib import admin
 from .models import Album, Artist, Track
-
-# Register your models here.
-admin.site.register(Album)
-admin.site.register(Artist)
-admin.site.register(Track)
-
-
-class ArtistAdmin(admin.ModelAdmin):
-    list_display = 'name'
-    list_filter = 'name'
-    search_fields = 'name'
-
-
-class TrackAdmin(admin.ModelAdmin):
-    list_display = ('name', 'album', 'composer', 'milliseconds', 'UnitPrice')
-    list_filter = ('name', 'album',)
-    search_fields = ('name', 'album', 'composer')
 
 
 class AlbumAdmin(admin.ModelAdmin):
-    list_display = ('title', 'artiste')
-    list_filter = ('title', 'artiste')
-    search_fields = ('title', 'artiste')
+    list_display = ('Title', 'Artist')
+    list_filter = ('Title', 'Artist',)
+    ordering = ('Title', 'Artist',)
+    search_fields = ('Title', 'Artist')
+
+
+class TrackAdmin(admin.ModelAdmin):
+    list_display = ('Name', 'Album', 'Composer', 'Milliseconds', 'UnitPrice')
+    list_filter = ('Name', 'Album',)
+    search_fields = ('Name', 'Album', 'Composer')
+
+
+# Register your models here.
+admin.site.register(Album, AlbumAdmin)
+admin.site.register(Artist)
+admin.site.register(Track, TrackAdmin)

@@ -13,11 +13,10 @@
 
 <div class="jumbotron text-center">
     <h1>List of all the albums</h1>
-{#    <form action="{% url "recherche" truc_cherche %}" method="post">#}
     <form action="{% url "recherche" %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Search" />
     </form>
 </div>
 

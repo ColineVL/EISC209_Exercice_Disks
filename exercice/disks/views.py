@@ -10,10 +10,7 @@ from .forms import RechercheForm
 def tous_albums(request):
     albums = Album.objects.all()
     form = RechercheForm(request.POST or None)
-    if form.is_valid():
-        recherche = form.cleaned_data['recherche']
-        envoi = True
-        return render(request, 'disk.recherche.html', )
+
     return render(request, 'disks/tousAlbums.html', locals())
 
 
@@ -28,14 +25,14 @@ def details_album(request, id, title):
     return render(request, 'disks/detailsAlbum.html', locals())
 
 
-# def recherche(request, truc_cherche):
-#     albums = Album.objects.filter(Title__contains=truc_cherche)
-#     artistes = Artist.objects.filter(Name__contains=truc_cherche)
-#     tracks = Track.objects.filter(Name__contains=truc_cherche)
-#     return render(request, 'disks/recherche.html', locals())
 def recherche(request):
-    return render(request, 'disks/recherche.html')
+    form = RechercheForm(request.POST)
 
+    if form.is_valid():
+        search = form.cleaned_data['search']
+        albums = Album.objects.filter(Title__contains=search)
+        artists = Artist.objects.filter(Name__contains=search)
+        tracks = Track.objects.filter(Name__contains=search)
+        return render(request, 'disks/recherche.html', locals())
+    return render(request, 'disks/tousAlbums.html')
 
-def test(request):
-    return render(request, 'disks/test.html')

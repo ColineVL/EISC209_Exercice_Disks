@@ -20,7 +20,8 @@ from disks import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('disks/', include('disks.urls'), name="disks"),
+    #path('disks/', include('disks.urls'), name="disks"),
+    path('disks/', include('disks.urls')),
     path('', views.tous_albums),
 
 ]
