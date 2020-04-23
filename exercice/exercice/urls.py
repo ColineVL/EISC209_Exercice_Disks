@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from disks import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('disks/', include('disks.urls'), name="disks")
+    path('disks/', include('disks.urls'), name="disks"),
+    path('', views.tous_albums),
 
 ]

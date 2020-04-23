@@ -13,26 +13,36 @@
 
 <div class="jumbotron text-center">
     <h1>List of all the albums</h1>
-{#    TODO ajouter un champ de recherche#}
+{#    <form action="{% url "recherche" truc_cherche %}" method="post">#}
+    <form action="{% url "recherche" %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
 </div>
+
+
+
 <div class="container">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-6">
             <h3>Title</h3>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-6">
             <h3>Artist</h3>
         </div>
     </div>
-    {% for album in listeAlbums %}
+
+
+    {% for album in albums %}
 
 
 
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-6">
                 <p><a href="{% url "detailsAlbum" album.id album.Title %}">{{ album.Title }}</a></p>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-6">
                 <p>{{ album.Artist }}</p>
             </div>
         </div>

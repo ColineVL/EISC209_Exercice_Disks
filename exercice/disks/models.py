@@ -27,7 +27,6 @@ class Track(models.Model):
     Name = models.CharField(max_length=200)
     Album = models.ForeignKey('Album', on_delete=models.CASCADE)
     Composer = models.CharField(max_length=220)
-    Milliseconds = models.TextField
-    Bytes = models.IntegerField
-    UnitPrice = models.IntegerField
-    #TODO changer le type de unitPrice, et vérifier les autres
+    Milliseconds = models.IntegerField()
+    Bytes = models.IntegerField()
+    UnitPrice = models.DecimalField(decimal_places=2, max_digits=10)
